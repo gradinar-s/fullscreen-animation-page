@@ -1,0 +1,277 @@
+/* ----- Includes ---------------------------- */
+@import "./reset.css";
+@import "./fonts.css";
+
+/* ----- Common styles ----------------------- */
+body {
+  font-family: "Jura";
+  font-weight: 400;
+  font-size: 18px; /* 2em */
+}
+/* -- Fullscreen -------------------------- */
+.fullscreen {
+  height: 100vh;
+}
+
+/* -- Fullscreen content body ------------- */
+.cnt-body {
+  position: relative;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fbo-logo,
+.fbo-magic {
+  position: absolute;
+  left: 25px;
+  z-index: 99;
+  cursor: pointer;
+}
+.fbo-logo {
+  top: 50px;
+}
+.fbo-magic {
+  bottom: 50px;
+  width: 2.5em;
+}
+
+/* -- Content body item ------------------- */
+.cnt-body-item {
+  position: relative;
+  height: 100%;
+  flex: 0 1 25%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0px 4em 0px 6em;
+  transition: 0.6s;
+  cursor: pointer;
+}
+.cnt-body-item:last-child {
+  overflow: hidden;
+}
+.cnt-body-item:not(:last-child)::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  right: 0;
+  width: 3px;
+  height: 100%;
+  background-color: #bab9b959;
+}
+
+.cnt-body-item__title {
+  position: relative;
+  z-index: 10;
+  height: 45px;
+  font-weight: 500;
+  font-size: 1.2em;
+  text-transform: uppercase;
+}
+.cnt-body-item__title::before {
+  content: attr(data-number);
+  position: absolute;
+  top: 0;
+  left: -1.4em;
+  font-size: 1.8em;
+  line-height: 1;
+  color: #bab9b9;
+}
+
+.cnt-body-item__description {
+  position: relative;
+  z-index: 10;
+  color: #bab9b9;
+  margin-bottom: 2.5em;
+  height: 250px;
+  overflow: hidden;
+}
+.cnt-body-item__description p {
+  margin-top: 1.8em;
+}
+
+.cnt-body-item__nav {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.cnt-body-item__nav::after {
+  content: "";
+  position: absolute;
+  top: -1.3em;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #000;
+}
+
+.cnt-body-item__link-text {
+  font-size: 1.2em;
+  font-weight: 500;
+  text-transform: uppercase;
+  text-decoration: underline;
+}
+.cnt-body-item__link-btn {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  background-color: #bab9b9;
+  border-radius: 50%;
+  transform: rotate(45deg);
+  transition: 0.3s;
+}
+
+/* -- Arrow --------------------------- */
+.cnt-body-item__link-btn span {
+  position: relative;
+  width: 30px;
+  height: 3px;
+  top: 50%;
+  left: 50%;
+  margin-top: -1.5px;
+  margin-left: -13.5px;
+  background-color: #000;
+  display: block;
+}
+.cnt-body-item__link-btn span::before,
+.cnt-body-item__link-btn span::after {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 3px;
+  background-color: #000;
+}
+.cnt-body-item__link-btn span::after {
+  top: -6px;
+  right: -3px;
+  transform: rotate(45deg);
+}
+.cnt-body-item__link-btn span::before {
+  top: 6.5px;
+  right: -3.5px;
+  transform: rotate(-45deg);
+}
+
+/* -- Anim elements ------------------- */
+.anim-el {
+  position: absolute;
+  z-index: 10;
+
+  width: calc(100% + 50px);
+  top: 0;
+  left: -1em;
+
+  transform: scale(0);
+  transform-origin: left;
+  opacity: 0;
+  transition: 0.6s;
+  padding-top: 0px;
+}
+
+.cnt-body-item:hover .anim-el {
+  opacity: 1;
+  transform: scale(1);
+  transition: 0.6s;
+}
+
+.cnt-body-item:hover {
+  padding-top: 175px;
+  transition: 0.6s;
+}
+
+.cnt-body-item:hover .cnt-body-item__title,
+.cnt-body-item:hover .cnt-body-item__title::before,
+.cnt-body-item:hover .cnt-body-item__description,
+.cnt-body-item:hover .cnt-body-item__link-text {
+  color: #fff;
+  transition: 0.3s;
+}
+.cnt-body-item:hover .cnt-body-item__link-btn,
+.cnt-body-item:hover .cnt-body-item__nav::after {
+  background-color: #fff;
+  transition: 0.3s;
+}
+
+/* ----- Media query ------------------------- */
+@media (max-width: 1440px) {
+  .fbo-logo {
+    top: 25px;
+  }
+  .cnt-body-item {
+    padding: 0 2em 0 4em;
+  }
+  .cnt-body-item__title::before {
+    font-size: 1.4em;
+    left: -1.3em;
+  }
+}
+
+@media (max-width: 1366px) {
+  body {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .cnt-body-item {
+    padding: 0 2em 0 2em;
+  }
+  .cnt-body-item__title::before {
+    top: -1.2em;
+    right: 0;
+    left: initial;
+  }
+}
+
+@media (max-width: 767px) {
+  .fullscreen {
+    height: auto;
+  }
+  .cnt-body {
+    flex-direction: column;
+  }
+  .fbo-logo {
+    width: 50px;
+    top: 10px;
+
+    right: 0;
+    left: initial;
+  }
+  .anim-el {
+    height: 100%;
+  }
+  .anim-el img {
+    width: 100%;
+    height: 100%;
+    filter: blur(2px);
+  }
+
+  .cnt-body-item {
+    padding: 3em 3em 0 3em;
+  }
+  .cnt-body-item:not(:first-child)::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #bab9b959;
+  }
+  .cnt-body-item__title::before {
+    top: 0;
+    left: -1.5em;
+  }
+  .cnt-body-item__nav {
+    padding-bottom: 1em;
+  }
+  .fbo-magic {
+    bottom: 25px;
+    left: 10px;
+  }
+}
