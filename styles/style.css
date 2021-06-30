@@ -3,10 +3,15 @@
 @import "./fonts.css";
 
 /* ----- Common styles ----------------------- */
+::selection {
+  background-color: white;
+  color: #000;
+}
+
 body {
   font-family: "Jura";
   font-weight: 400;
-  font-size: 18px; /* 2em */
+  font-size: 18px;
 }
 /* -- Fullscreen -------------------------- */
 .fullscreen {
@@ -39,6 +44,9 @@ body {
 
 /* -- Content body item ------------------- */
 .cnt-body-item {
+  transform: translateY(-100%);
+  animation: dropdownItem 2s ease 6s forwards;
+
   position: relative;
   height: 100%;
   flex: 0 1 25%;
@@ -49,6 +57,7 @@ body {
   transition: 0.6s;
   cursor: pointer;
 }
+
 .cnt-body-item:last-child {
   overflow: hidden;
 }
@@ -207,6 +216,16 @@ body {
 ::-webkit-scrollbar-thumb {
   border-radius: 5px;
   background-color: #d1d1d1;
+}
+
+/* ----- Animation --------------------------- */
+@keyframes dropdownItem {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
 }
 
 /* ----- Media query ------------------------- */

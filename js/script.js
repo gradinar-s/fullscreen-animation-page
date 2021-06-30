@@ -55,3 +55,13 @@ for (let i = 0; i < cntBodyItem.length; i++) {
   });
 }
 // --------------------------------------------------------
+
+// Animation handler --------------------------------------
+const presentationScreen = document.getElementById("presentation-screen_js");
+
+presentationScreen.addEventListener("animationend", function (e) {
+  if (e.animationName === "hidePresentantionScreen") {
+    document.body.removeChild(this);
+  }
+});
+// --------------------------------------------------------
