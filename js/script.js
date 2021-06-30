@@ -1,7 +1,14 @@
-// DOM elements
+import api from "./api.js";
+
+// Get config ---------------------------------------------
+const config = api.getConfig();
+
+// Get DOM elements ---------------------------------------
 const cntBody = document.getElementById("cnt-body_js");
 
-// Create item
+// --------------------------------------------------------
+
+// Create item --------------------------------------------
 function createItem(element) {
   const html = `
     <div class="cnt-body-item" id="cnt-body-item_js">
@@ -15,11 +22,7 @@ function createItem(element) {
         ${element.title}
       </div>
       <div class="cnt-body-item__description">
-        ${element.description
-          .map((p) => {
-            return `<p>${p}</p>`;
-          })
-          .join("")}
+        ${element.description.map((p) => `<p>${p}</p>`).join("")}
       </div>
       <div class="cnt-body-item__nav">
         <a href="${element.link}" class="cnt-body-item__link-text">Сайт</a>
@@ -32,13 +35,15 @@ function createItem(element) {
 
   return html;
 }
+// --------------------------------------------------------
 
-// Render to DOM
+// Render to DOM ------------------------------------------
 for (let i = 0; i < config.length; i++) {
   cntBody.insertAdjacentHTML("beforeend", createItem(config[i]));
 }
+// --------------------------------------------------------
 
-// Handler hover
+// Handler hover ------------------------------------------
 const cntBodyItem = document.querySelectorAll("#cnt-body-item_js");
 
 for (let i = 0; i < cntBodyItem.length; i++) {
@@ -49,3 +54,4 @@ for (let i = 0; i < cntBodyItem.length; i++) {
     cntBodyItem[i].style.background = "#fff";
   });
 }
+// --------------------------------------------------------
